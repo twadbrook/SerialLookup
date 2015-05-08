@@ -6,19 +6,6 @@ import plistlib
 import csv
 import urllib2
 
-response = urllib2.urlopen('http://hs-mds-01.milken.us/serials.csv')
-html = response.read()
-output = open('serials.csv', 'wb')
-output.write(html)
-output.close()
-
-def get_serial_csv():
-	response = urllib2.urlopen('http://hs-mds-01.milken.us/serials.csv')
-	html = response.read()
-	output = open('serials.csv', 'wb')
-	output.write(html)
-	output.close()
-
 def get_hardware_info():
     '''Uses system profiler to get hardware info for this machine'''
     cmd = ['/usr/sbin/system_profiler', 'SPHardwareDataType', '-xml']
@@ -58,6 +45,12 @@ def change_computername(hostname):
     (output, dummy_error) = proc.communicate()
 
 
+response = urllib2.urlopen('http://hs-mds-01.milken.us/serials.csv')
+html = response.read()
+output = open('serials.csv', 'wb')
+output.write(html)
+output.close()
+
 with open('serials.csv', mode='r') as infile:
     reader = csv.reader(infile)
     keyDict = dict(reader)
@@ -65,6 +58,7 @@ with open('serials.csv', mode='r') as infile:
 hardware_info = get_hardware_info()
 mySerialNumber = hardware_info.get('serial_number', 'UNKNOWN')
 myHostName = keyDict(mySerialNumber)
+
 change_local_hostname(myHostName)
 change_hostname(myHostName)
 change_computername(myHostName)
