@@ -24,21 +24,21 @@ def get_hardware_info():
         return {}
         
 def change_local_hostname(hostname):
-	cmd = ['/usr/sbin/scutil', '--set', 'LocalHostName', hostname]
+    cmd = ['/usr/sbin/scutil', '--set', 'LocalHostName', hostname]
     proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     (output, dummy_error) = proc.communicate()
 
 def change_hostname(hostname):
-	cmd = ['/usr/sbin/scutil', '--set', 'HostName', hostname]
+    cmd = ['/usr/sbin/scutil', '--set', 'HostName', hostname]
     proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     (output, dummy_error) = proc.communicate()
 
 def change_computername(hostname):
-	cmd = ['/usr/sbin/scutil', '--set', 'ComputerName', hostname]
+    cmd = ['/usr/sbin/scutil', '--set', 'ComputerName', hostname]
     proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
