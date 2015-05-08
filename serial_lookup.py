@@ -6,6 +6,14 @@ import plistlib
 import csv
 import urllib2
 
+print "Waiting for network access..."
+cmd = ['/usr/sbin/scutil', '-w', 'State:/Network/Global/DNS', '-t', 180]
+proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
+						stdin=subprocess.PIPE,
+						stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+(output, dummy_error) = proc.communicate()
+
+
 def get_hardware_info():
     '''Uses system profiler to get hardware info for this machine'''
     cmd = ['/usr/sbin/system_profiler', 'SPHardwareDataType', '-xml']
