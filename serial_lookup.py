@@ -7,7 +7,7 @@ import csv
 import urllib2
 
 print "Waiting for network access..."
-cmd = ['/usr/sbin/scutil', '-w', 'State:/Network/Global/DNS', '-t', 180]
+cmd = ['/usr/sbin/scutil', '-w', 'State:/Network/Global/DNS', '-t', '180']
 proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
 						stdin=subprocess.PIPE,
 						stdout=subprocess.PIPE, stderr=subprocess.PIPE)
