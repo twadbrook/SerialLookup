@@ -57,7 +57,7 @@ with open('serials.csv', mode='r') as infile:
 
 hardware_info = get_hardware_info()
 mySerialNumber = hardware_info.get('serial_number', 'UNKNOWN')
-myHostName = keyDict(mySerialNumber)
+myHostName = keyDict[mySerialNumber]
 
 change_local_hostname(myHostName)
 change_hostname(myHostName)
