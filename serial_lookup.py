@@ -6,6 +6,7 @@ import plistlib
 import csv
 import urllib2
 
+
 print "Waiting for network access..."
 cmd = ['/usr/sbin/scutil', '-w', 'State:/Network/Global/DNS', '-t', '180']
 proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
@@ -53,8 +54,10 @@ def change_computername(hostname):
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     (output, dummy_error) = proc.communicate()
 
-
-response = urllib2.urlopen('http://hs-mds-01.milken.us/serials.csv')
+try:
+	response = urllib2.urlopen('http://10.4.10.1/serials.csv', timeout=120)
+except URLError as e:
+	prnt "ERROR: Could not reach 10.4.10.1 after 120 seconds: %s" % e
 html = response.read()
 output = open('serials.csv', 'wb')
 output.write(html)
